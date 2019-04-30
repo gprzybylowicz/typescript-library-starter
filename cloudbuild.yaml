@@ -8,3 +8,6 @@ steps:
    args: ['run', 'build']
    env:
      - 'BUILD_ID=$BUILD_ID'
+      - name: 'gcr.io/cloud-builders/gsutil'
+   id: 'Publish'
+   args: ['-m', 'rsync', '-r', '-c', '-d', './dist', 'gs://kingpin_binaries/$BRANCH_NAME']
